@@ -1,0 +1,5 @@
+.container-card {
+  box-shadow: var(--shadow4); /* Shadow4 from Fluent UI */
+  border-radius: var(--borderRadiusMedium); /* Medium radius from Fluent UI */
+  background-color: rgb(255, 255, 255);
+}
