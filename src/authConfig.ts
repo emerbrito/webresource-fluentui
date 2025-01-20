@@ -10,5 +10,5 @@ export const msalConfig = {
 }
 
 export const authRequest = {
-  scopes: ['User.read']
+  scopes: []
 }
