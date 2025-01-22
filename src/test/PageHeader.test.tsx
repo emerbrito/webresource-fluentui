@@ -1,5 +1,7 @@
-import { render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import { PageHeader } from '../components/PageHeader'
+
+afterEach(cleanup)
 
 describe('PageHeader Component', () => {
   test('renders without crashing', () => {
