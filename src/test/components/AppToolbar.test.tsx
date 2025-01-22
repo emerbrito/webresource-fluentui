@@ -1,5 +1,5 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { AppToolbar } from '../components/AppToolbar'
+import { AppToolbar } from '../../components/AppToolbar'
 
 afterEach(cleanup)
 
