@@ -1,11 +1,9 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { screen, setup } from '../../utils/test-utils'
 import { PageHeader } from '../../components/PageHeader'
-
-afterEach(cleanup)
 
 describe('PageHeader Component', () => {
   test('renders without crashing', () => {
-    render(<PageHeader title='Test Title' />)
+    setup(<PageHeader title='Test Title' />)
     // Check if the component is in the document
     const headerElement = screen.getByText(/Test Title/i)
     expect(headerElement).toBeInTheDocument()
@@ -13,7 +11,7 @@ describe('PageHeader Component', () => {
 
   test('renders with correct title', () => {
     const testTitle = 'My Page Title'
-    render(<PageHeader title={testTitle} />)
+    setup(<PageHeader title={testTitle} />)
     // Check if the title is displayed correctly
     const titleElement = screen.getByText(testTitle)
     expect(titleElement).toBeInTheDocument()
