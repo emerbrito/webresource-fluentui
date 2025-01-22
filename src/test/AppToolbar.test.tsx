@@ -33,7 +33,7 @@ describe('AppToolbar Component', () => {
 
   test('click more button', () => {
     render(<AppToolbar />)
-    expect(screen.queryByText('New')).toBeInTheDocument()
+    expect(screen.queryByText('New')).not.toBeInTheDocument()
     const moreButton = screen.getByLabelText('More')
     fireEvent.click(moreButton)
     expect(screen.getByText('New')).toBeInTheDocument()
