@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, setup } from '../../utils/test-utils'
+import { screen, setup } from '../../utils/test-utils'
 import { AppToolbar } from '../../components/AppToolbar'
 
 describe('AppToolbar Component', () => {
