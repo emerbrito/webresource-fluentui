@@ -20,11 +20,15 @@ function App() {
     } else {
       console.log('Skipping data parameter parsing in development mode.')
     }
-    fetchInstance
-      .get('https://tstest1.crm.dynamics.com/api/data/v9.2/accounts?$select=accountid,accountnumber,name&$top=5')
-      .then(response => {
-        console.log(response.data.value)
-      })
+    try {
+      fetchInstance
+        .get('https://tstest1.crm.dynamics.com/api/data/v9.2/accounts?$select=accountid,accountnumber,name&$top=5')
+        .then(response => {
+          console.log(response.data.value)
+        })
+    } catch (error) {
+      console.log('Error fetching data:', error)
+    }
   }, [setDataParameters])
 
   return (
