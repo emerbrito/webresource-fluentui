@@ -13,8 +13,10 @@ function App() {
   useEffect(() => {
     if (import.meta.env.MODE !== 'development') {
       const data = getRequiredDataParameter()
-      console.log('Query param data:', data)
-      setDataParameters(data)
+      if (data) {
+        console.log('Query param data:', data)
+        setDataParameters(data)
+      }
     } else {
       console.log('Skipping data parameter parsing in development mode.')
     }
