@@ -36,7 +36,7 @@ describe('AppError Component', () => {
   test('displays messages when error and errorInfo props are provided', () => {
     const errorMessage = 'Something went wrong!'
     const errorInfo = {
-      componentStack: 'at App\nat ErrorBoundary\nat Main'
+      componentStack: 'Fallback UI'
     }
     setup(<AppError error={new Error(errorMessage)} errorInfo={errorInfo} />)
 
