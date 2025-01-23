@@ -18,21 +18,22 @@ describe("dataParameterService", () => {
             const data: DataParameters = { key: "value" };
             window.location.search = `?data=${encodeURIComponent(JSON.stringify(data))}`;
 
-
             const result = getRequiredDataParameter();
             expect(result).toEqual(data);
         });
 
-        it("should throw an error when data parameter is missing", () => {
+        it("should return null when data parameter is missing", () => {
             window.location.search = "";
 
-            expect(() => getRequiredDataParameter()).toThrow("Data parameter not found in query string.");
+            const result = getRequiredDataParameter();
+            expect(result).toBeNull();
         });
 
-        it("should throw an error when data parameter is not valid JSON", () => {
+        it("should return null when data parameter is not valid JSON", () => {
             window.location.search = "?data=invalidJSON";
 
-            expect(() => getRequiredDataParameter()).toThrow("Data parameter is not valid JSON.");
+            const result = getRequiredDataParameter();
+            expect(result).toBeNull();
         });
     });
 
@@ -52,10 +53,11 @@ describe("dataParameterService", () => {
             expect(result).toBeNull();
         });
 
-        it("should throw an error when data parameter is not valid JSON", () => {
+        it("should return null when data parameter is not valid JSON", () => {
             window.location.search = "?data=invalidJSON";
 
-            expect(() => getDataParameter()).toThrow("Data parameter is not valid JSON.");
+            const result = getDataParameter();
+            expect(result).toBeNull();
         });
     });
 });
