@@ -11,29 +11,34 @@ const useFetch = () => {
     // Set the interceptor  
     axiosInstance.interceptors.request.use(
         async (config: InternalAxiosRequestConfig) => {
-            if (accounts && accounts.length > 0) {
-                const request: SilentRequest = {
-                    scopes: ["https://tstest1.crm.dynamics.com/.default"],
-                    account: accounts[0]
-                };
+            try {
+                if (accounts && accounts.length > 0) {
+                    const request: SilentRequest = {
+                        scopes: ["https://tstest1.crm.dynamics.com/.default"],
+                        account: accounts[0]
+                    };
 
-                try {
-                    const tokenResponse = await instance.acquireTokenSilent(request);
-                    const token = tokenResponse.accessToken;
+                    try {
+                        const tokenResponse = await instance.acquireTokenSilent(request);
+                        const token = tokenResponse.accessToken;
 
-                    // Attach token to headers  
-                    if (config.headers) {
-                        config.headers.Authorization = `Bearer ${token}`;
-                    } else {
-                        config.headers = { Authorization: `Bearer ${token}` } as AxiosRequestHeaders;
+                        // Attach token to headers  
+                        if (config.headers) {
+                            config.headers.Authorization = `Bearer ${token}`;
+                        } else {
+                            config.headers = { Authorization: `Bearer ${token}` } as AxiosRequestHeaders;
+                        }
+                    } catch (error) {
+                        console.error("Token acquisition failed: ", error);
+                        throw new Error("Failed to acquire token");
                     }
-                } catch (error) {
-                    console.error("Token acquisition failed: ", error);
                 }
+                return config;
+            } catch (error) {
+                return Promise.reject(error);
             }
-            return config;
         },
-        error => {
+        (error) => {
             return Promise.reject(error);
         }
     );
